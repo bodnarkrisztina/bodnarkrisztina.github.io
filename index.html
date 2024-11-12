@@ -231,16 +231,37 @@ function checkEnemyCollision() {
     }
   });
 }
+// Robbanás pozíciójának és megjelenésének kezelése
+function generateExplosion(x, y) {
+  explosions.push({ x, y });
+  console.log("Robbanás generálva itt: ", { x, y });
 
+  // Késleltetés a robbanás kirajzolására, mielőtt a játék véget érne
+  setTimeout(() => {
+    gameOver = true;
+  }, 500); // 500 ms késleltetés, ami megjeleníti a robbanást a játék vége előtt
+}
 
+// Ütközés ellenőrzése az ellenséggel
+function checkEnemyCollision() {
+  const head = snake[0];
+  enemies.forEach((enemy, index) => {
+    if (head.x === enemy.x && head.y === enemy.y) {
+      console.log("Ütközés az ellenséggel! Robbanás generálása...");
+      generateExplosion(enemy.x, enemy.y); // Robbanás generálása az ellenség pozícióján
+      enemies.splice(index, 1); // Ellenség eltávolítása
+    }
+  });
+}
 
 // Robbanások kirajzolása
 function drawExplosions() {
   explosions.forEach(explosion => {
-    console.log("Robbanás pozíció: ", explosion); // Hibakereséshez
+    console.log("Robbanás kirajzolása itt:", explosion);
     ctx.drawImage(explosionImage, explosion.x * gridSize, explosion.y * gridSize, gridSize, gridSize);
   });
 }
+
 
 
 

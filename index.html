@@ -192,16 +192,30 @@ explosionImage.onerror = () => console.log("Hiba a robbanás kép betöltésekor
 
 document.addEventListener("keydown", changeDirection);
 
-// A kaja kirajzolása
+// Kaja kirajzolása glow effektel
 function drawFood() {
-  ctx.drawImage(foodImage, food.x * gridSize, food.y * gridSize, gridSize, gridSize);
+  ctx.save(); // Eredeti állapot mentése
+  if (food.type === 'speed') {
+    ctx.shadowBlur = 20; // Glow erőssége
+    ctx.shadowColor = 'blue'; // Glow színe (gyorsaság bónuszhoz)
+    ctx.drawImage(speedFoodImage, food.x * gridSize, food.y * gridSize, gridSize, gridSize);
+  } else {
+    ctx.shadowBlur = 20; // Glow erőssége
+    ctx.shadowColor = 'white'; // Glow színe (normál kaja)
+    ctx.drawImage(foodImage, food.x * gridSize, food.y * gridSize, gridSize, gridSize);
+  }
+  ctx.restore(); // Eredeti állapot visszaállítása
 }
 
-// Az ellenségek kirajzolása
+// Ellenségek kirajzolása glow effektel
 function drawEnemies() {
+  ctx.save(); // Eredeti állapot mentése
+  ctx.shadowBlur = 20; // Glow erőssége
+  ctx.shadowColor = 'red'; // Glow színe
   enemies.forEach(enemy => {
-    ctx.drawImage(enemyImage, enemy.x * gridSize, enemy.y * gridSize, gridSize, gridSize);  // Kép kirajzolása
+    ctx.drawImage(enemyImage, enemy.x * gridSize, enemy.y * gridSize, gridSize, gridSize);
   });
+  ctx.restore(); // Eredeti állapot visszaállítása
 }
 
 // Robbanások kirajzolása

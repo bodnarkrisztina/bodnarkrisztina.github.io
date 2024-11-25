@@ -12,7 +12,7 @@
  <div id="menu">
    <div class="title-container">
      <img src="képek/snake_pic.png" alt="Kígyó Ikon" class="icon">
-     <h1>Kígyós Játék</h1>
+     <img src="képek/mineworm.png" alt="Játék név" class="name">
    </div>
    <button class="button-79" role="button" onclick="startGame()">Start</button>
    <button class="button-79" role="button" onclick="openSettings()">Settings</button>
@@ -75,7 +75,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    /*justify-content: center;*/
     height: 100vh;
   }
 
@@ -90,8 +90,19 @@
   .icon {
     width: 300px;   
     height: 300px;  
-    margin-bottom: 30px; 
+   /*margin-bottom: 30px; */
+    margin-top: 50px;
   }
+
+
+  .name {
+    width: 600px;   
+    height: 300px;  
+    margin-bottom: 30px; 
+    position: relative;
+    top: -15%;
+  }
+
 
   .button-79 {
     background: #332cf2;
@@ -104,6 +115,12 @@
     font-weight: 700;
     padding: 1rem 1.25rem;
     margin: 10px;
+    position: relative;
+    top: -15%;
+    height: 50px;
+    width: 300px;
+    margin-bottom: 40px;
+
   }
 
   .help-container, .settings-container {
@@ -336,7 +353,7 @@ function moveSnake() {
     score++;
     document.getElementById("score").innerText = score;
     generateFood();
-    speed = Math.max(50, speed - 10);
+
     
     if (score % 5 === 0) {
       generateEnemy();

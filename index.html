@@ -390,11 +390,20 @@ function changeDirection(event) {
 }
 
 function generateFood() {
-  food = {
-    x: Math.floor(Math.random() * gridCount),
-    y: Math.floor(Math.random() * gridCount),
-  };
+  let foodPosition;
+  do {
+    foodPosition = {
+      x: Math.floor(Math.random() * gridCount),
+      y: Math.floor(Math.random() * gridCount),
+    };
+  } while (
+    snake.some(segment => segment.x === foodPosition.x && segment.y === foodPosition.y) || 
+    enemies.some(enemy => enemy.x === foodPosition.x && enemy.y === foodPosition.y)
+  );
+  food = foodPosition;
 }
+
+
 
 function clearCanvas() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);

@@ -192,8 +192,8 @@ let food = { x: 15, y: 15 };
 let score = 0;
 let gameOver = false;
 let speed = 200;
-let enemies = [];  // Ellenségek tárolása
-let explosions = []; // Robbanások tárolása
+let enemies = [];  
+let explosions = []; 
 
 // Képek betöltése
 const headImages = {
@@ -214,12 +214,12 @@ const foodImage = new Image();
 foodImage.src = 'képek/crystal.png'; 
 
 const enemyImage = new Image();
-enemyImage.src = 'képek/bomb.png';  // Az ellenség képe
+enemyImage.src = 'képek/bomb.png';  
 
 
 
 const explosionImage = new Image();
-explosionImage.src = 'képek/robbanas.png'; // Robbanás kép útvonala
+explosionImage.src = 'képek/robbanas.png'; 
 explosionImage.onload = () => console.log("Robbanás kép betöltve!");
 explosionImage.onerror = () => console.log("Hiba a robbanás kép betöltésekor!");
 
@@ -227,33 +227,33 @@ explosionImage.onerror = () => console.log("Hiba a robbanás kép betöltésekor
 
 document.addEventListener("keydown", changeDirection);
 
-// Kaja kirajzolása glow effektel
+
 function drawFood() {
-  ctx.save(); // Eredeti állapot mentése
+  ctx.save(); 
   if (food.type === 'speed') {
     ctx.shadowBlur = 20; // Glow erőssége
-    ctx.shadowColor = 'blue'; // Glow színe (gyorsaság bónuszhoz)
+    ctx.shadowColor = 'blue'; 
     ctx.drawImage(speedFoodImage, food.x * gridSize, food.y * gridSize, gridSize, gridSize);
   } else {
     ctx.shadowBlur = 20; // Glow erőssége
     ctx.shadowColor = 'white'; // Glow színe (normál kaja)
     ctx.drawImage(foodImage, food.x * gridSize, food.y * gridSize, gridSize, gridSize);
   }
-  ctx.restore(); // Eredeti állapot visszaállítása
+  ctx.restore(); 
 }
 
 // Ellenségek kirajzolása glow effektel
 function drawEnemies() {
-  ctx.save(); // Eredeti állapot mentése
+  ctx.save(); 
   ctx.shadowBlur = 20; // Glow erőssége
   ctx.shadowColor = 'red'; // Glow színe
   enemies.forEach(enemy => {
     ctx.drawImage(enemyImage, enemy.x * gridSize, enemy.y * gridSize, gridSize, gridSize);
   });
-  ctx.restore(); // Eredeti állapot visszaállítása
+  ctx.restore(); 
 }
 
-// Robbanások kirajzolása
+
 function drawExplosions() {
   explosions.forEach(explosion => {
     console.log("Robbanás kirajzolása pozíción: ", explosion);
@@ -271,29 +271,29 @@ function checkEnemyCollision() {
     if (head.x === enemy.x && head.y === enemy.y) {
       console.log("Ütközés történt az ellenséggel! Robbanás hozzáadása...");
       explosions.push({ x: enemy.x, y: enemy.y });
-      enemies.splice(index, 1); // Ellenség eltávolítása
+      enemies.splice(index, 1); 
       
-      // Késleltetés a robbanás kirajzolására, mielőtt a játék véget érne
+ 
       setTimeout(() => {
         gameOver = true;
-      }, 500); // 500 ms késleltetés
+      }, 500); 
     }
   });
 }
-// Robbanás pozíciójának és megjelenésének kezelése
+
 function generateExplosion(x, y) {
   explosions.push({ x, y });
   console.log("Robbanás generálva itt: ", { x, y });
 
-  // Késleltetés a robbanás kirajzolására, mielőtt a játék véget érne
+
   setTimeout(() => {
     gameOver = true;
-  }, 500); // 500 ms késleltetés, ami megjeleníti a robbanást a játék vége előtt
+  }, 500); 
 }
 
 
 
-// Robbanások kirajzolása
+
 function drawExplosions() {
   explosions.forEach(explosion => {
     console.log("Robbanás kirajzolása itt:", explosion);
@@ -312,8 +312,8 @@ function startGame() {
   gameOver = false;
   snake = [{ x: 10, y: 10 }];
   direction = { x: 0, y: 0 };
-  enemies = [];  // Ellenségek törlése
-  explosions = []; // Robbanások törlése
+  enemies = [];  
+  explosions = []; 
   generateFood();
   gameLoop();
 }
@@ -347,7 +347,7 @@ function closeHelp() {
 
 
 
-// Az ellenség generálása
+
 function generateEnemy() {
   let enemyPosition;
   do {
@@ -362,7 +362,7 @@ function generateEnemy() {
   enemies.push(enemyPosition);
 }
 
-// A kígyó és a kaja mozgatása, kirajzolása
+
 function moveSnake() {
   const head = { x: snake[0].x + direction.x, y: snake[0].y + direction.y };
   snake.unshift(head);
@@ -381,7 +381,7 @@ function moveSnake() {
   }
 }
 
-// A kígyó kirajzolása
+
 function drawSnake() {
   let headImage;
   if (direction.y < 0) headImage = headImages.up;    
@@ -438,7 +438,7 @@ function checkCollision() {
     }
   }
 
-  checkEnemyCollision();  // Ellenségek ütközésének ellenőrzése
+  checkEnemyCollision();  
 }
 
 function endGame() {
@@ -457,8 +457,8 @@ function gameLoop() {
   setTimeout(() => {
     clearCanvas();
     drawFood();
-    drawEnemies();  // Ellenségek kirajzolása
-    drawExplosions();  // Robbanások kirajzolása
+    drawEnemies();  
+    drawExplosions();  
     moveSnake();
     drawSnake();
     checkCollision();

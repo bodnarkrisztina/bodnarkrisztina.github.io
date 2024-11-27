@@ -22,10 +22,18 @@
 <!-- Settings ablak -->
 <div id="settings" class="settings-container" style="display: none;">
   <h2>Beállítások</h2>
+  <br>
   <label for="speedInput">Sebesség (ms):</label>
+  <p>(50 ms a leggyorsabb sebesség, a 200 ms a leglassabb sebesség!)</p>
+  <br>
+ 
   <input type="number" id="speedInput" min="50" max="500" value="200">
-  <button onclick="applySettings()">Mentés</button>
-  <button onclick="closeSettings()">Mégse</button>
+  
+  <br>
+  <div id="szam">
+  <button  onclick="applySettings()">Mentés</button>  
+  <button  onclick="closeSettings()">Mégse</button>
+</div>
 </div>
 
 <div id="help" class="help-container" style="display: none;">
@@ -40,6 +48,7 @@
   </ul>
   <br>
   <p>A cél az, hogy minél több táplálékot vegyél fel a kígyó hosszának növelésével!</p>
+  <p>Minden 5 pontnál megjelenik egy bomba! Kerüld el  őket mindenáron!</p>
   <button onclick="closeHelp()">Bezárás</button>
 </div>
 
@@ -68,6 +77,7 @@
     flex-direction: column;
     background-image: url('képek/háttér.png'); 
     background-size: cover; 
+    background-size: fixed; 
     color: white;
     font-family: Arial, sans-serif;
   }
@@ -79,6 +89,7 @@
     /*justify-content: center;*/
     height: 100vh;
   }
+
 
   .title-container {
     display: flex;
@@ -93,6 +104,7 @@
     height: 300px;  
    /*margin-bottom: 30px; */
     margin-top: 50px;
+
   }
 
 
@@ -102,7 +114,10 @@
     margin-bottom: 30px; 
     position: relative;
     top: -15%;
+
   }
+
+
 
 
   .button-79 {
@@ -121,6 +136,7 @@
     height: 50px;
     width: 300px;
     margin-bottom: 40px;
+
 
   }
 

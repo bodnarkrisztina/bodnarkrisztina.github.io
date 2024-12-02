@@ -328,11 +328,11 @@ function closeSettings() {
 
 function applySettings() {
   const newSpeed = parseInt(document.getElementById("speedInput").value);
-  if (!isNaN(newSpeed) && newSpeed >= 50 && newSpeed <= 500) {
+  if (!isNaN(newSpeed) && newSpeed >= 50 && newSpeed <= 200) {
     speed = newSpeed;
     alert("Sebesség beállítva: " + speed + " ms");
   } else {
-    alert("Kérjük, adjon meg egy érvényes sebességet 50 és 500 között.");
+    alert("Kérjük, adjon meg egy érvényes sebességet 50 és 200 között.");
   }
   closeSettings();
 }

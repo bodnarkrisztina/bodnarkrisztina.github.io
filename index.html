@@ -371,6 +371,7 @@ function moveSnake() {
     score++;
     document.getElementById("score").innerText = score;
     generateFood();
+     speed = Math.max(50, speed - 10);
 
     
     if (score % 5 === 0) {
